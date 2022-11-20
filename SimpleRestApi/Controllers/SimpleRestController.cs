@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleRestApi.Common;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
 using SimpleRestApi.Common.Database.CodeValue.Models;
-using SimpleRestApi.Features;
 
-namespace SimpleRestApi.Rest;
+namespace SimpleRestApi.Controllers;
 
 [Route("rest/simple")]
 [ApiController]
@@ -31,7 +30,6 @@ public class SimpleRestController: ControllerBase
         await _codeValueTypeDataStorage.Truncate();
         await _codeValueTypeDataStorage.AddRangeAsync(data);
         
-        StaticContent.Context = data;
         return Ok();
     }
 }
