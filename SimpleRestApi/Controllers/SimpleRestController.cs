@@ -19,7 +19,7 @@ public class SimpleRestController: ControllerBase
     }
 
     [Microsoft.AspNetCore.Mvc.HttpGet]
-    public Task<JsonResult> Index([FromUri, FromQuery] CodeValuesFilterModel filterModel)
+    public Task<JsonResult> Index([FromQuery] CodeValuesFilterModel filterModel)
     {
         var result = _codeValueTypeDataStorage.GetByFilter(filterModel);
         

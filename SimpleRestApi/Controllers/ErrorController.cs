@@ -9,8 +9,6 @@ public class ErrorController : ControllerBase
 {
     public ErrorController()
     {
-        
+        //TODO: Implement error handler
     }
-    
-    
 }
