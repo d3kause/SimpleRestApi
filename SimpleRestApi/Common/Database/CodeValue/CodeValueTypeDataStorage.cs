@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
 using SimpleRestApi.Common.Database.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;

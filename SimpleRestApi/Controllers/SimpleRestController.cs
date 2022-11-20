@@ -26,7 +26,7 @@ public class SimpleRestController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Update([FromBody] List<Dictionary<string,string>> json)
     {
-        var data = CodeValueDtoExtensions.GetFromDictionaryArray(json);
+        var data = CodeValueDto.GetFromDictionaryArray(json);
 
         await _codeValueTypeDataStorage.Truncate();
         await _codeValueTypeDataStorage.AddRangeAsync(data);

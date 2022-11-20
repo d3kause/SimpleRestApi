@@ -2,8 +2,12 @@
 
 namespace SimpleRestApi.Controllers.Dtos;
 
-public class CodeValueDtoExtensions
+public class CodeValueDto
 {
+    public int Code { get; set; }
+    
+    public string? Value { get; set; }
+    
     public static IEnumerable<CodeValueDto> GetFromDictionaryArray(IEnumerable<Dictionary<string, string>> data)
     {
         var result = new List<CodeValueDto>();
