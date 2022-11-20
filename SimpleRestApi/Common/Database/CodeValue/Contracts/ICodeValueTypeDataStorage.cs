@@ -1,13 +1,14 @@
 ﻿
 using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Common.Database.CodeValue.Contracts;
 
 public interface ICodeValueTypeDataStorage
 {
-    Task AddAsync(CodeValueType data);
+    Task AddAsync(CodeValueDto data);
 
-    Task AddRangeAsync(IEnumerable<CodeValueType> data);
+    Task AddRangeAsync(IEnumerable<CodeValueDto> data);
 
     IEnumerable<CodeValueType> GetAll();
 

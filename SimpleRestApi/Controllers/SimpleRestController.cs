@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleRestApi.Common;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
 using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Controllers;
 
@@ -25,7 +26,7 @@ public class SimpleRestController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Update([FromBody] List<Dictionary<string,string>> json)
     {
-        var data = CodeValueExtensions.GetFromDictionaryArray(json);
+        var data = CodeValueDtoExtensions.GetFromDictionaryArray(json);
 
         await _codeValueTypeDataStorage.Truncate();
         await _codeValueTypeDataStorage.AddRangeAsync(data);

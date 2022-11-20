@@ -1,13 +1,13 @@
 ﻿using SimpleRestApi.Common.Exceptions;
 
-namespace SimpleRestApi.Common.Database.CodeValue.Models;
+namespace SimpleRestApi.Controllers.Dtos;
 
-public static class CodeValueExtensions
+public class CodeValueDtoExtensions
 {
-    public static IEnumerable<CodeValueType> GetFromDictionaryArray(IEnumerable<Dictionary<string, string>> data)
+    public static IEnumerable<CodeValueDto> GetFromDictionaryArray(IEnumerable<Dictionary<string, string>> data)
     {
-        var result = new List<CodeValueType>();
-        var rowNumber = 1;
+        var result = new List<CodeValueDto>();
+        
         foreach (var rowData in data)
         {
             if (rowData.Count != 1)
@@ -17,9 +17,8 @@ public static class CodeValueExtensions
 
             var keyValuePair = rowData.FirstOrDefault();
 
-            result.Add(new CodeValueType
+            result.Add(new CodeValueDto
             {
-                Id = rowNumber++,
                 Code = int.Parse(keyValuePair.Key),
                 Value = keyValuePair.Value
             });

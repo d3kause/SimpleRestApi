@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
 using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Common.Database.CodeValue;
 
@@ -13,15 +14,20 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
     {
         _dbContext = Guard.NotNull(dbContext, nameof(dbContext));
     }
-    public async Task AddAsync(CodeValueType data)
+    public async Task AddAsync(CodeValueDto data)
     {
-        await _dbContext.AddAsync(data);
+        var preparedData = GetDataFromDto(new[] { data });
+        
+        await _dbContext.AddAsync(preparedData);
+        
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task AddRangeAsync(IEnumerable<CodeValueType> data)
+    public async Task AddRangeAsync(IEnumerable<CodeValueDto> data)
     {
-        await _dbContext.AddRangeAsync(data);
+        var preparedData = GetDataFromDto(data);
+
+        await _dbContext.AddRangeAsync(preparedData);
         await _dbContext.SaveChangesAsync();
     }
 
@@ -47,5 +53,16 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
         // {
         //    await _dbContext.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {table}");
         // }
+    }
+
+    private static IEnumerable<CodeValueType> GetDataFromDto(IEnumerable<CodeValueDto> data)
+    {
+        var sortedData = data.OrderBy(x => x.Code);
+        
+        var rowNum = 1;
+        var result = sortedData.Select(model => new CodeValueType()
+            { Id = rowNum++, Code = model.Code, Value = model.Value }).ToList();
+
+        return result;
     }
 }
