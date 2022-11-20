@@ -1,4 +1,5 @@
-﻿using SimpleRestApi.Common.Models;
+﻿
+using SimpleRestApi.Common.Database.CodeValue.Models;
 
 namespace SimpleRestApi.Features;
 

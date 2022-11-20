@@ -1,8 +1,12 @@
-﻿namespace SimpleRestApi.Common.Models;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SimpleRestApi.Common.Database.CodeValue.Models;
 
 public class CodeValueType
 {
     public int Id { get; set; }
+    
     public int Code { get; set; }
+    
     public string? Value { get; set; }
 }

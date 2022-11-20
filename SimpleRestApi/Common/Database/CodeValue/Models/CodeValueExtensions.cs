@@ -1,6 +1,6 @@
 ﻿using SimpleRestApi.Common.Exceptions;
 
-namespace SimpleRestApi.Common.Models;
+namespace SimpleRestApi.Common.Database.CodeValue.Models;
 
 public static class CodeValueExtensions
 {

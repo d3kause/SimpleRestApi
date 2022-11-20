@@ -1,21 +1,16 @@
-var builder = WebApplication.CreateBuilder(args);
+using SimpleRestApi;
+using SimpleRestApi.Common.Database;
+using SimpleRestApi.Common.Database.CodeValue;
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var webHost  = Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+    webBuilder.UseStartup<Startup>()).Build();
 
-var app = builder.Build();
+MigrateDatabase(webHost);
 
-if (app.Environment.IsDevelopment())
+await webHost.RunAsync();
+
+
+void MigrateDatabase(IHost webHost)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    webHost.WithMigratedDatabase<CodeValueDbContext>(); 
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
