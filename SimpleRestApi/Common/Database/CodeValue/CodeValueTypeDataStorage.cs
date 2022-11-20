@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
 using SimpleRestApi.Common.Database.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;
@@ -35,23 +37,26 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
         return _dbContext.CodeValueTypes.ToList();
     }
 
-    public IEnumerable<CodeValueType> GetByFilter(DataFilterModel filterModel)
+    public IEnumerable<CodeValueType> GetByFilter(CodeValuesFilterModel filterModel)
     {
-        throw new NotImplementedException();
+        var data = _dbContext.CodeValueTypes.AsQueryable().ApplyFilter(filterModel);
+
+        return data.ToList();
     }
 
     public async Task Truncate()
     {
-        _dbContext.RemoveRange(_dbContext.CodeValueTypes);
-        // var tableNames = _dbContext.Model.GetEntityTypes()
-        //     .Select(t => t.GetTableName())
-        //     .Distinct()
-        //     .ToList();
-        //
-        // foreach (var table in tableNames)
-        // {
-        //    await _dbContext.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {table}");
-        // }
+        var entityType = _dbContext.CodeValueTypes.EntityType;
+        var schema = entityType.FindAnnotation(Constansts.SchemaPath)?.Value;
+        var tableName = entityType.GetAnnotation(Constansts.TablePath).Value?.ToString();
+        var schemaName = schema == null ? Constansts.DefaultSchemaName : schema.ToString();
+
+        var fullTableName = $"\"{schemaName}\".\"{tableName}\"";
+        
+        var cmd = $"TRUNCATE TABLE {fullTableName}";
+
+        await _dbContext.Database.ExecuteSqlRawAsync(cmd);
+        // _dbContext.RemoveRange(_dbContext.CodeValueTypes);
     }
 
     private static IEnumerable<CodeValueType> GetDataFromDto(IEnumerable<CodeValueDto> data)
@@ -64,4 +69,5 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
 
         return result;
     }
+    
 }

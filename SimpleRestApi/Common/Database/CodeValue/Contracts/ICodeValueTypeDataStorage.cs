@@ -1,5 +1,4 @@
-﻿
-using SimpleRestApi.Common.Database.CodeValue.Models;
+﻿using SimpleRestApi.Common.Database.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Common.Database.CodeValue.Contracts;
@@ -12,7 +11,7 @@ public interface ICodeValueTypeDataStorage
 
     IEnumerable<CodeValueType> GetAll();
 
-    IEnumerable<CodeValueType> GetByFilter(DataFilterModel filterModel);
+    IEnumerable<CodeValueType> GetByFilter(CodeValuesFilterModel filterModel);
 
     Task Truncate();
 }

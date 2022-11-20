@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleRestApi.Common;
 using SimpleRestApi.Common.Database.CodeValue.Contracts;
@@ -7,7 +8,7 @@ using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Controllers;
 
-[Route("rest/simple")]
+[Microsoft.AspNetCore.Mvc.Route("rest/simple")]
 [ApiController]
 public class SimpleRestController: ControllerBase
 {
@@ -17,14 +18,16 @@ public class SimpleRestController: ControllerBase
         _codeValueTypeDataStorage = Guard.NotNull(codeValueTypeDataStorage, nameof(codeValueTypeDataStorage));
     }
 
-    [HttpGet]
-    public async Task<JsonResult> Index()
+    [Microsoft.AspNetCore.Mvc.HttpGet]
+    public Task<JsonResult> Index([FromUri, FromQuery] CodeValuesFilterModel filterModel)
     {
-        return new JsonResult(_codeValueTypeDataStorage.GetAll());
+        var result = _codeValueTypeDataStorage.GetByFilter(filterModel);
+        
+        return Task.FromResult(new JsonResult(result));
     }
     
-    [HttpPost]
-    public async Task<IActionResult> Update([FromBody] List<Dictionary<string,string>> json)
+    [Microsoft.AspNetCore.Mvc.HttpPost]
+    public async Task<IActionResult> Update([Microsoft.AspNetCore.Mvc.FromBody] List<Dictionary<string,string>> json)
     {
         var data = CodeValueDto.GetFromDictionaryArray(json);
 
