@@ -1,4 +1,4 @@
-﻿namespace SimpleRestApi.Common.Database.CodeValue.Models;
+﻿namespace SimpleRestApi.Common.Databases.CodeValue.Models;
 
 public class CodeValuesFilterModel
 {

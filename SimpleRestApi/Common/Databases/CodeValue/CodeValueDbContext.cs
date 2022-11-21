@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Common.Databases.CodeValue.Models;
 
-namespace SimpleRestApi.Common.Database.CodeValue;
+namespace SimpleRestApi.Common.Databases.CodeValue;
 
 public sealed class CodeValueDbContext : DbContext
 {

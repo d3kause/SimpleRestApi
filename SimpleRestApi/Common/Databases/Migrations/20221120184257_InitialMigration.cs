@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SimpleRestApi.Common.Database.CodeValue.Migrations
+namespace SimpleRestApi.Common.Databases.CodeValue.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

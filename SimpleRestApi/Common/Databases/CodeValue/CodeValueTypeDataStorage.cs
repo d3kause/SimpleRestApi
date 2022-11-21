@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using SimpleRestApi.Common.Database.CodeValue.Contracts;
-using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Common.Databases.CodeValue.Contracts;
+using SimpleRestApi.Common.Databases.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;
 
-namespace SimpleRestApi.Common.Database.CodeValue;
+namespace SimpleRestApi.Common.Databases.CodeValue;
 
 public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
 {

@@ -1,6 +1,6 @@
 using SimpleRestApi;
-using SimpleRestApi.Common.Database;
-using SimpleRestApi.Common.Database.CodeValue;
+using SimpleRestApi.Common.Databases;
+using SimpleRestApi.Common.Databases.CodeValue;
 
 var webHost  = Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
     webBuilder.UseStartup<Startup>()).Build();

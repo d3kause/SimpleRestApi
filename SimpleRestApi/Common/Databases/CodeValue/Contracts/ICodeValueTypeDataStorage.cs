@@ -1,7 +1,7 @@
-﻿using SimpleRestApi.Common.Database.CodeValue.Models;
+﻿using SimpleRestApi.Common.Databases.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;
 
-namespace SimpleRestApi.Common.Database.CodeValue.Contracts;
+namespace SimpleRestApi.Common.Databases.CodeValue.Contracts;
 
 public interface ICodeValueTypeDataStorage
 {

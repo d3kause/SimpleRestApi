@@ -1,4 +1,4 @@
-﻿namespace SimpleRestApi.Common.Database;
+﻿namespace SimpleRestApi.Common.Databases;
 
 public static class Constansts
 {

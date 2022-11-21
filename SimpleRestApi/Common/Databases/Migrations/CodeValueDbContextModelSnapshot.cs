@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SimpleRestApi.Common.Database.CodeValue;
+using SimpleRestApi.Common.Databases.CodeValue;
 
 #nullable disable
 
-namespace SimpleRestApi.Common.Database.CodeValue.Migrations
+namespace SimpleRestApi.Common.Databases.CodeValue.Migrations
 {
     [DbContext(typeof(CodeValueDbContext))]
     partial class CodeValueDbContextModelSnapshot : ModelSnapshot

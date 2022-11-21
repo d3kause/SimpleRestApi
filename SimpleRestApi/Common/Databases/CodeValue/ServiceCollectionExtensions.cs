@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
-using SimpleRestApi.Common.Database.CodeValue.Contracts;
+using SimpleRestApi.Common.Databases.CodeValue.Contracts;
 
-namespace SimpleRestApi.Common.Database.CodeValue;
+namespace SimpleRestApi.Common.Databases.CodeValue;
 
 public static class ServiceCollectionExtensions
 {

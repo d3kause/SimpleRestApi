@@ -2,8 +2,8 @@
 using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleRestApi.Common;
-using SimpleRestApi.Common.Database.CodeValue.Contracts;
-using SimpleRestApi.Common.Database.CodeValue.Models;
+using SimpleRestApi.Common.Databases.CodeValue.Contracts;
+using SimpleRestApi.Common.Databases.CodeValue.Models;
 using SimpleRestApi.Controllers.Dtos;
 
 namespace SimpleRestApi.Controllers;
