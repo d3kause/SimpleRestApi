@@ -1,6 +1,6 @@
 ﻿namespace SimpleRestApi.Common.Databases;
 
-public static class Constansts
+public static class Constants
 {
     public const string SchemaPath = "Relational:Schema";
     public const string TablePath = "Relational:TableName";

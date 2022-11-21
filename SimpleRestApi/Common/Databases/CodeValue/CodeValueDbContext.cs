@@ -8,8 +8,7 @@ public sealed class CodeValueDbContext : DbContext
     public DbSet<CodeValueType> CodeValueTypes { get; set; }
 
     public CodeValueDbContext(DbContextOptions<CodeValueDbContext> options) : base(options)
-    {
-    }
+    { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

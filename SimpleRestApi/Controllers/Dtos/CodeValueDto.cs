@@ -4,9 +4,9 @@ namespace SimpleRestApi.Controllers.Dtos;
 
 public class CodeValueDto
 {
-    public int Code { get; set; }
+    public int Code { get; private init; }
     
-    public string? Value { get; set; }
+    public string? Value { get; private init; }
     
     public static IEnumerable<CodeValueDto> GetFromDictionaryArray(IEnumerable<Dictionary<string, string>> data)
     {

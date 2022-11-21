@@ -2,7 +2,6 @@
 
 namespace SimpleRestApi.Common.Exceptions;
 
-
 [Serializable]
 public class IncorrectDataException : Exception
 {

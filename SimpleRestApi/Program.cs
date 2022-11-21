@@ -14,9 +14,6 @@ MigrateDatabase(webHost);
 
 await webHost.RunAsync();
 
-
-
-
 void ConfigureLogger(WebHostBuilderContext context, LoggerConfiguration loggerConfiguration)
 {
     var logLevel = context.Configuration.GetValue<string>("Logging:MinimumLevel"); // read level from appsettings.json

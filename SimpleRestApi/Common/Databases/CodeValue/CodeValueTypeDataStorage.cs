@@ -46,16 +46,15 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
     public async Task Truncate()
     {
         var entityType = _dbContext.CodeValueTypes.EntityType;
-        var schema = entityType.FindAnnotation(Constansts.SchemaPath)?.Value;
-        var tableName = entityType.GetAnnotation(Constansts.TablePath).Value?.ToString();
-        var schemaName = schema == null ? Constansts.DefaultSchemaName : schema.ToString();
+        var schema = entityType.FindAnnotation(Constants.SchemaPath)?.Value;
+        var tableName = entityType.GetAnnotation(Constants.TablePath).Value?.ToString();
+        var schemaName = schema == null ? Constants.DefaultSchemaName : schema.ToString();
 
         var fullTableName = $"\"{schemaName}\".\"{tableName}\"";
         
         var cmd = $"TRUNCATE TABLE {fullTableName}";
 
         await _dbContext.Database.ExecuteSqlRawAsync(cmd);
-        // _dbContext.RemoveRange(_dbContext.CodeValueTypes);
     }
 
     private static IEnumerable<CodeValueType> GetDataFromDto(IEnumerable<CodeValueDto> data)
@@ -68,5 +67,4 @@ public sealed class CodeValueTypeDataStorage : ICodeValueTypeDataStorage
 
         return result;
     }
-    
 }

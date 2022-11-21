@@ -11,6 +11,7 @@ public static class ServiceCollectionExtensions
         Action<NpgsqlDbContextOptionsBuilder> configureOptions)
     {
         Guard.NotNull(connectionString, nameof(connectionString));
+        
         services.AddTransient<ICodeValueTypeDataStorage, CodeValueTypeDataStorage>();
         services.AddDbContext<CodeValueDbContext>(opt => opt.UseNpgsql(connectionString, configureOptions));
 
