@@ -1,4 +1,7 @@
-﻿using Npgsql;
+﻿using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.Net.Http.Headers;
+using Npgsql;
+using Serilog;
 using SimpleRestApi.Common.Databases.CodeValue;
 
 namespace SimpleRestApi;
@@ -14,6 +17,21 @@ public sealed class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddHttpLogging(logging =>
+        {
+            logging.LoggingFields = HttpLoggingFields.All;
+            logging.RequestHeaders.Add(HeaderNames.Accept);
+            logging.RequestHeaders.Add(HeaderNames.ContentType);
+            logging.RequestHeaders.Add(HeaderNames.ContentDisposition);
+            logging.RequestHeaders.Add(HeaderNames.ContentEncoding);
+            logging.RequestHeaders.Add(HeaderNames.ContentLength);
+
+            logging.MediaTypeOptions.AddText("application/json");
+            logging.MediaTypeOptions.AddText("multipart/form-data");
+
+            logging.RequestBodyLogLimit = 4096;
+            logging.ResponseBodyLogLimit = 4096;
+        });
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -31,6 +49,7 @@ public sealed class Startup
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
         IHostApplicationLifetime applicationLifetime)
     {
+        app.UseHttpLogging().UseSerilogRequestLogging();
         app.UseRouting();
         app.UseHttpsRedirection();
         app.UseAuthorization();
