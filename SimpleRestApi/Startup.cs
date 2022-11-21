@@ -1,5 +1,5 @@
 ﻿using Npgsql;
-using SimpleRestApi.Common.Database.CodeValue;
+using SimpleRestApi.Common.Databases.CodeValue;
 
 namespace SimpleRestApi;
 
